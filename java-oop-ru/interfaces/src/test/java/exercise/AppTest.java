@@ -57,6 +57,16 @@ class AppTest {
     }
 
     // BEGIN
-    
+    @Test
+    void testToString(){
+        CharSequence text = new ReversedSequence("abcdef");
+        assertEquals("fedcba", text.toString());
+    }
+    @Test
+    void testCharAt(){
+        CharSequence text = new ReversedSequence("abcdef");
+        assertEquals("f", testCharAt(0));
+        assertEquals("a", testCharAt(5));
+    }
     // END
 }
