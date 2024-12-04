@@ -13,7 +13,7 @@ content = @`
             <p></p>
         @else
         @for(var user : page.getUsers())
-        <div>${user.getFirstName()}</div>
+        <div>${user.getFirstName()+ " " + user.getLastName()}</div>
         @endfor
         @endif
         <a href="/">Back</a>
