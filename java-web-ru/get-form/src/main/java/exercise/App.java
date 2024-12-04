@@ -27,7 +27,9 @@ public final class App {
         app.get("/users", ctx -> {
             var term = ctx.queryParam("term");
             ArrayList<User> users = new ArrayList<>();
-            if (term != null && !term.isBlank()) {
+            if (term == null || term.isBlank()) {
+                users.addAll(USERS);
+            } else {
                 for (var user : USERS) {
                     if ((user.getFirstName().toLowerCase().trim()).startsWith(term.toLowerCase().trim())) {
                         users.add(user);
