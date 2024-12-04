@@ -9,9 +9,7 @@ content = @`
         <input type="submit" value="Search" />
     </form>
     <ul>
-        @if(page.getUsers().isEmpty())
-            <p></p>
-        @else
+        @if(!page.getUsers().isEmpty())
         @for(var user : page.getUsers())
         <div>${user.getFirstName()+ " " + user.getLastName()}</div>
         @endfor
