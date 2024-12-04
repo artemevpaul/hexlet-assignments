@@ -9,7 +9,7 @@ import exercise.dto.users.UsersPage;
 import static io.javalin.rendering.template.TemplateUtil.model;
 import io.javalin.rendering.template.JavalinJte;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
 
 public final class App {
 
@@ -27,9 +27,9 @@ public final class App {
         app.get("/users", ctx -> {
             var term = ctx.queryParam("term");
             ArrayList<User> users = new ArrayList<>();
-            if (term != null && !term.isBlank()){
+            if (term != null && !term.isBlank()) {
                 for (var user : USERS) {
-                    if ((user.getFirstName().toLowerCase().trim()).startsWith(term.toLowerCase().trim())){
+                    if ((user.getFirstName().toLowerCase().trim()).startsWith(term.toLowerCase().trim())) {
                         users.add(user);
                     }
                 }
