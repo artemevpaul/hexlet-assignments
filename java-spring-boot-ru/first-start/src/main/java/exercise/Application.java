@@ -13,8 +13,8 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
     @GetMapping("/about")
-    public String hello() {
-        return "Welcome to Hexlet" + " Dear User";
+    public static String hello() {
+        return "Welcome to Hexlet!" + " Dear User!";
     }
 }
 // END
