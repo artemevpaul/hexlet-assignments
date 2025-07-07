@@ -30,7 +30,6 @@ public class Application {
     // BEGIN
     @GetMapping("/posts")
     public List<Post> index(@RequestParam(defaultValue = "10") Integer limit, @RequestParam(defaultValue = "1") Integer page) {
-        var postList = new ArrayList<Post>();
         return posts.stream()
                 .skip((page - 1) * limit)
                 .limit(limit)
