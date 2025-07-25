@@ -37,9 +37,6 @@ public class ProductsController {
     private ProductMapper productMapper;
 
     // BEGIN
-    @Autowired
-    private CategoryRepository categoryRepository;
-
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDTO> index() {
@@ -60,14 +57,11 @@ public class ProductsController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDTO create(@Valid @RequestBody ProductCreateDTO data) {
-        var product = productMapper.map(data);
-        var category = categoryRepository.findById(data.getCategoryId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Category with ID " + data.getCategoryId() + " not found"));
-        product.setCategory(category);
+    ProductDTO create(@Valid @RequestBody ProductCreateDTO productData) {
+        var product = productMapper.map(productData);
         productRepository.save(product);
-        var dto = productMapper.map(product);
-        return dto;
+        var productDto = productMapper.map(product);
+        return productDto;
     }
 
     @PutMapping("/{id}")
@@ -75,10 +69,7 @@ public class ProductsController {
     public ProductDTO update(@PathVariable Long id, @Valid @RequestBody ProductUpdateDTO data) {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product is not found"));
-        var category = categoryRepository.findById(data.getCategoryId().get())
-                .orElseThrow(() -> new ResourceNotFoundException("Category is not found"));
         productMapper.update(data, product);
-        product.setCategory(category);
         productRepository.save(product);
 
         return productMapper.map(product);
