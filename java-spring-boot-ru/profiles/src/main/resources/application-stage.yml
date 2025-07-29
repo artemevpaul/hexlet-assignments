@@ -1,19 +1,7 @@
 # BEGIN
----
-
 spring:
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-  output:
-    ansi:
-      enabled: always
-  config:
-    activate:
-      on-profile: stage
   datasource:
-    password: admin
-    url: jdbc:h2:file:./test
+    url: "jdbc:h2:file:./test"
     username: admin
+    password: admin
 # END
